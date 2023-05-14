@@ -1,8 +1,11 @@
 :root {
     --white: #fff;
+    --lightGray: #e6e6e6;
+    --button: #cacaca;
     --darkGray: #6d6d6d;
     --darkBlue: #4c02d6;
     --darkerBlue: #32008f;
+    --black: #000;
 }
 
 * {
@@ -14,9 +17,15 @@
     color: var(--white);
     background-color: var(--darkerBlue);
     width: 100%;
+    color: var(--white);
 }
+
+.custom-btn-lg:hover {
+    color: var(--white);
+}
+
 .custom-bg {
-    background-color: rgb(241, 241, 241);
+    background-color: var(--lightGray);
 }
 
 .custom-header {
@@ -32,7 +41,32 @@
     font-size: 25px;
 }
 
+.history-btn {
+    border: 1px solid var(--lightGray);
+    background-color: var(--button);
+    margin: 5px 0 15px 0;
+    text-align: left;
+    font-family: 'Taviraj', serif;
+    font-weight: 500;
+    text-transform: capitalize;
+    border-radius: 0 30px 30px 0;
+    min-width: 40px;
+}
+
+.history-btn:hover {
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+}
+
+.left-side {
+    border: 1px dashed var(--darkGray);
+    padding: 30px 30px 0 30px;
+}
+
+h1 {
+    color: rgb(175, 214, 212);
+}
+
 form {
     margin-bottom: 1rem;
 }
-

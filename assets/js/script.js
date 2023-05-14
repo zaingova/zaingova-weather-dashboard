@@ -1,3 +1,5 @@
+var savedSearch = JSON.parse(localStorage.getItem("weather-search")) || [];
+var city;
 
 // adds event listener to the 'form=submit' action
 document.getElementById('city-form').addEventListener('submit', function (event) {
@@ -5,16 +7,12 @@ document.getElementById('city-form').addEventListener('submit', function (event)
     event.preventDefault();
 
     // gets the value from the search bar and saves it in a variable
-    var city = document.getElementById('search-city').value;
-    var savedSearch = JSON.parse(localStorage.getItem("weather-search")) || []
+    city = document.getElementById('search-city').value;
+    console.log(savedSearch);
 
-    console.log(city);
+    // calls daily forecast and 5-day forecast functions
     getForecast(city);
     getFiveDayForecast(city);
-
-    savedSearch.push(city)
-    localStorage.setItem("weather-search", JSON.stringify(savedSearch))
-    console.log(savedSearch);
 });
 
 // function that returns the city data object from the API, creates page elements, and inserts said data into them
@@ -26,10 +24,22 @@ function getForecast(city) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`)
         // returns response
         .then(function (response) {
-            return response.json()
+
+            // if a valid city is not entereed, ie anything that results in an error, sends an alert
+            if (response.status == 400 || response.status == 404) {
+                window.alert("Please enter a valid city");
+                return;
+            } else {
+                // otherwise, add city to local storage and render search history
+                savedSearch.push(city);
+                localStorage.setItem("weather-search", JSON.stringify(savedSearch));
+                renderHistory(savedSearch);
+                return response.json()
+            }
         })
 
         .then(function (apiData) {
+
             // creates elements for the main city data
             var sectionEl = document.createElement("section")
             var cityNameEl = document.createElement("h2");
@@ -41,15 +51,15 @@ function getForecast(city) {
             cityNameEl.textContent = apiData.name;
             // sets temp, wind-speed, and humidity using the same method
             cityCurrentTemp.textContent = "Current Temperature: " + apiData.main.temp + "°C";
-            cityCurrentWind.textContent = "Current Wind-Speed: " +apiData.wind.speed + " km/h";
-            cityCurrentHumidity.textContent = "Current Humidity: " +apiData.main.humidity + "%";
+            cityCurrentWind.textContent = "Current Wind-Speed: " + apiData.wind.speed + " km/h";
+            cityCurrentHumidity.textContent = "Current Humidity: " + apiData.main.humidity + "%";
 
-            cityCurrentTemp.setAttribute("style", "padding-left: 10px");
-            cityCurrentWind.setAttribute("style", "padding-left: 10px");
-            cityCurrentHumidity.setAttribute("style", "padding-left: 10px");
+            cityCurrentTemp.setAttribute("style", "padding-bottom: 0");
+            cityCurrentWind.setAttribute("style", "padding-bottom: 0px");
+            cityCurrentHumidity.setAttribute("style", "padding-bottom: 0px");
 
             // section styling
-            sectionEl.setAttribute("style", "border: 1px dashed black; padding: 1rem 5rem 1rem 1rem; background-color: #e8f0fe");
+            sectionEl.setAttribute("style", "border: 1px dashed black; padding: 1rem 5rem 1rem 1rem; margin-left: 20px; background-color: #e8f0fe");
 
             // adds each element to the main section
             sectionEl.appendChild(cityNameEl);
@@ -79,9 +89,40 @@ function getFiveDayForecast(city) {
         })
 }
 
-function renderHistory() {
-    return;
+// renders the local storage search history to the screen, as buttons
+function renderHistory(savedSearch) {
+    // section element -> new section element; hitoryEl is an array which will store buttons
+    var sectionEl = document.createElement("section");
+    var historyEl = [];
+
+    sectionEl.textContent = "";
+
+    // loops through local storage (the values of which are saved into another array)
+    for (var i = 0; i < savedSearch.length; i++) {
+        if (i < 10) {
+            historyEl[i] = document.createElement("button");
+            historyEl[i].textContent = savedSearch[i];
+            historyEl[i].setAttribute("style", "width: 100%");
+            historyEl[i].classList = "btn-lg btn-light history-btn";
+            sectionEl.prepend(historyEl[i]);
+
+            historyEl[i].addEventListener('click', function (event) {
+                event.preventDefault();
+
+                // gets the value from the history element and saves it in a variable
+                city = this.textContent;
+
+                // updates daily and 5-day forecast
+                getForecast(city);
+                getFiveDayForecast(city);
+            })
+        }
+    }
+
+    document.querySelector("#history").innerHTML = "";
+    document.querySelector("#history").append(sectionEl);
 }
 
+renderHistory(savedSearch);
 
 
