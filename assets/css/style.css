@@ -1,0 +1,39 @@
+:root {
+    --white: #fff;
+    --darkGray: #6d6d6d;
+    --darkBlue: #4c02d6;
+    --darkerBlue: #32008f;
+}
+
+.city-data {
+    border: 3px solid black;
+}
+
+.custom-btn-lg {
+    margin-top: 20px;
+    color: var(--white);
+    background-color: var(--darkGray);
+}
+.custom-bg {
+    background-color: rgb(241, 241, 241);
+}
+
+.custom-header {
+    background-color: var(--darkBlue);
+    font-family: 'Crimson Text', serif;
+}
+
+.form-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 25px;
+}
+
+.left-panel {
+    margin-left: 25px;
+}
+
+form {
+    padding: 3rem;
+    margin-bottom: 1rem;
+}
+
