@@ -5,14 +5,15 @@
     --darkerBlue: #32008f;
 }
 
-.city-data {
-    border: 3px solid black;
+* {
+    font-family: 'DM Serif Text', serif;
 }
 
 .custom-btn-lg {
-    margin-top: 20px;
+    margin-top: 10px;
     color: var(--white);
-    background-color: var(--darkGray);
+    background-color: var(--darkerBlue);
+    width: 100%;
 }
 .custom-bg {
     background-color: rgb(241, 241, 241);
@@ -20,20 +21,18 @@
 
 .custom-header {
     background-color: var(--darkBlue);
-    font-family: 'Crimson Text', serif;
+}
+
+.first-row {
+    padding: 20px;
+    margin: 20px 10px;
 }
 
 .form-label {
-    font-family: 'IBM Plex Mono', monospace;
     font-size: 25px;
 }
 
-.left-panel {
-    margin-left: 25px;
-}
-
 form {
-    padding: 3rem;
     margin-bottom: 1rem;
 }
 

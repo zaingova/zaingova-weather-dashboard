@@ -44,8 +44,12 @@ function getForecast(city) {
             cityCurrentWind.textContent = "Current Wind-Speed: " +apiData.wind.speed + " km/h";
             cityCurrentHumidity.textContent = "Current Humidity: " +apiData.main.humidity + "%";
 
+            cityCurrentTemp.setAttribute("style", "padding-left: 10px");
+            cityCurrentWind.setAttribute("style", "padding-left: 10px");
+            cityCurrentHumidity.setAttribute("style", "padding-left: 10px");
+
             // section styling
-            sectionEl.setAttribute("style", "border: 3px solid black, padding: 50px");
+            sectionEl.setAttribute("style", "border: 1px dashed black; padding: 1rem 5rem 1rem 1rem; background-color: #e8f0fe");
 
             // adds each element to the main section
             sectionEl.appendChild(cityNameEl);
