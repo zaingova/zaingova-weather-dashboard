@@ -16,6 +16,7 @@ document.getElementById('city-form').addEventListener('submit', function (event)
     renderForecasts(city);
 });
 
+// function to render both the daily and 5-day forecasts for a given city
 function renderForecasts(city) {
     getForecast(city);
     getFiveDayForecast(city);
@@ -108,22 +109,37 @@ function getFiveDayForecast(city) {
 
             for (var n = 0; n < 5; n++) {
                 var date = document.querySelector(".day" + (n + 1) + "Date");
-                var icon;
+                var icon = document.querySelector(".day" + (n + 1) + "Icon");
                 var temp = document.querySelector(".day" + (n + 1) + "Temp");
+                var wind = document.querySelector(".day" + (n + 1) + "Wind");
+                var humidity = document.querySelector(".day" + (n + 1) + "Humidity");
+                var sectionTitle = document.querySelector(".sectionTitle");
 
-                date.textContent = datesArray[n].dt_txt;
-                temp.textContent = datesArray[n].main.temp;
+                document.querySelector("#day" + (n + 1)).setAttribute("style", "background-color: #f0f0f0; border-radius: " +
+                    "40px; height: 270px; text-align: center; margin: 10px 20px 10px 20px; padding-right: 30px; border: 1px dashed black");
+                document.querySelector("#five-day").setAttribute("style", "padding: 10px; margin: 35px 0 0 30px");
+                document.querySelector(".right-panel-divider").setAttribute("style", "display: block");
+
+                date.setAttribute("style", "padding-top: 33px; font-weight: bold; font-size: 20px");
+                icon.setAttribute("style", "padding-bottom: 15px");
+                sectionTitle.setAttribute("style", "text-align: center; font-size: 25px; margin-bottom: 30px");
+
+                sectionTitle.textContent = "Five Day Forecast";
+                date.textContent = (datesArray[n].dt_txt).substring(0, (datesArray[n].dt_txt).indexOf(" "));
+                icon.setAttribute("src", "http://openweathermap.org/img/w/" + datesArray[n].weather[0].icon + ".png")
+                temp.textContent = "Temp: " + datesArray[n].main.temp + "°C";
+                wind.textContent = "Wind: " + datesArray[n].wind.speed + " km/h";
+                humidity.textContent = "Humidity: " + datesArray[n].main.humidity + "%"
+
                 console.log(datesArray[n]);
             }
         })
-
 }
 
 // renders the local storage search history to the screen, as buttons
 function renderHistory(savedSearch) {
     // section element -> new section element; hitoryEl is an array which will store buttons
     var historyEl = [];
-
     sectionEl.textContent = "";
 
     // loops through local storage (the values of which are saved into another array)
@@ -147,6 +163,7 @@ function renderHistory(savedSearch) {
                 getFiveDayForecast(city);
             })
         } else {
+            // shifts search results up by 1 on each loop after the first 10 results
             for (var n = 0; n < 10; n++) {
                 historyEl[n].textContent = savedSearch[n];
             }
@@ -157,7 +174,6 @@ function renderHistory(savedSearch) {
     document.querySelector("#history").append(sectionEl);
 
 }
-
 
 // automatically render search history
 renderHistory(savedSearch);
