@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,300;1,500&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Taviraj:ital,wght@1,200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
 
     <!-- external style/API -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -33,24 +33,64 @@
             <div class="col-sm-3 left-side">
                 <form id="city-form">
                     <div class="mb-3">
-                        <label for="search-city" class="form-label">Search for a city: </label>
+                        <label for="search-city" class="form-label">Search for a city:</label>
                         <input type="text" class="form-control" id="search-city" placeholder="Enter city name..."">
-                        <button type="submit" class="btn custom-btn-lg">Submit</button>
+                        <button type=" submit" class="btn custom-btn-lg">Submit</button>
                         <hr>
                         <section id="history"></section>
                     </div>
                 </form>
             </div>
             <div class="col-lg">
-                <section class="" id="city-data"></section>
-                <section id="five-day"></section>
+                <section id="city-data" class="row"></section>
+
+                <section id="five-day" class="row">
+                    <div id="day1" class="col">
+                        <p class="day1Date"></p>
+                        <img class="day1Icon">
+                        <p class="day1Temp"></p>
+                        <p class="day1Wind"></p>
+                        <p class="day1Humidity"></p>
+                    </div>
+                    <div id="day2" class="col">
+                        <p class="day2Date"></p>
+                        <img class="day2Icon">
+                        <p class="day2Temp"></p>
+                        <p class="day2Wind"></p>
+                        <p class="day2Humidity"></p>
+                    </div>
+                    <div id="day3" class="col">
+                        <p class="day3Date"></p>
+                        <img class="day3Icon">
+                        <p class="day3Temp"></p>
+                        <p class="day3Wind"></p>
+                        <p class="day3Humidity"></p>
+                    </div>
+                    <div id="day4" class="col">
+                        <p class="day4Date"></p>
+                        <img class="day4Icon">
+                        <p class="day4Temp"></p>
+                        <p class="day4Wind"></p>
+                        <p class="day4Humidity"></p>
+                    </div>
+                    <div id="day5" class="col">
+                        <p class="day5Date"></p>
+                        <img class="day5Icon">
+                        <p class="day5Temp"></p>
+                        <p class="day5Wind"></p>
+                        <p class="day5Humidity"></p>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
+
     <!-- JS imports -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 
