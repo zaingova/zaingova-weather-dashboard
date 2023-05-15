@@ -13,6 +13,8 @@ This is a basic weather dashboard application that utilizes the OpenWeatherMap A
 
 Enter any city you want to see the data fr in the search bar to the left. Keep in mind, you must enter a valid city or an error message will appear. Once you do this, a current forecast showing the date, an icon depicting the current weather condition, the temperature, the wind speed, and the humidity will appear at the top; and just below you will see a 5 day forecast with the same information. On the left side of the page, your 10 most-recent searches will appear in chronological order, starting from newest to oldest.
 
+If you click on any entry in the search history, it displays data for that city.
+
 [https://zaingova.github.io/zaingova-weather-dashboard/](https://zaingova.github.io/zaingova-weather-dashboard/)
 
 ## Licence
