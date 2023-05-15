@@ -62,7 +62,7 @@
     text-align: left;
     font-family: 'Schoolbell', cursive;
     font-weight: 500;
-    text-transform: capitalize;
+    text-transform:capitalize;
     border-radius: 0 30px 30px 0;
     min-width: 40px;
 }
@@ -84,7 +84,7 @@
 }
 
 h1 {
-    color: var(--black);
+    color: var(--lightGray);
 }
 
 form {
